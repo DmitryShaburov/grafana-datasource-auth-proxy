@@ -1,0 +1,66 @@
+# number of proxy instances
+replicas: 1
+
+# image settings
+image:
+  repository: dshaburov/grafana-datasource-auth-proxy
+  tag: v0.1.0
+  pullPolicy: IfNotPresent
+
+# logger settings
+log:
+  # possible options: txt, json
+  format: txt
+  # possible options: trace, debug, info, warn, error, fatal and panic
+  level: info
+
+# origin grafana settings
+grafana: {}
+  # # Grafana host/service name
+  # host: grafana
+  # # Grafana encryption secret
+  # # please, store this secret in Kubernetes secret instead
+  # secret: SW2YcwTIb9zpOOhoPsMm
+
+# grafana database settings
+database: {}
+  # # address in hostname:port format
+  # host: localhost:3306
+  # # database name
+  # name: grafana
+  # # database credentials
+  # # please, store this secret in Kubernetes secret instead
+  # user: grafana
+  # password: grafana
+
+# proxy ACL configuration
+config:
+  # map of <datasource>: <list of teams> ACL's
+  acl: {}
+    # Prometheus:
+    #   - Team One
+    #   - Team Two
+    # Prometheus - Secondary:
+    #   - Team Two
+
+# ingress settings
+ingress:
+  # create ingress object in cluster
+  enabled: false
+  # additional annotations
+  annotations: {}
+  # # hostname for ingress
+  # host: grafana.local
+  # # path prefix for ingress
+  # prefix: /
+
+# extra environments variable
+extraEnv: {}
+
+# extra envFrom
+envFrom: []
+  # - secretRef:
+  #     name: grafana-db
+
+# resources
+resources: {}

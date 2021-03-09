@@ -1,0 +1,7 @@
+---
+# Example configuration for datasource auth proxy
+# acl contains map of
+# <grafana data source name>: <list of grafana team names to allow access>
+acl:
+  Prometheus:
+    - dummy

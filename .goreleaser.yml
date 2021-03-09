@@ -1,0 +1,14 @@
+builds:
+  - goos:
+      - windows
+      - darwin
+      - linux
+    env:
+      - CGO_ENABLED=0
+
+dockers:
+  - image_templates:
+      - "dshaburov/grafana-datasource-auth-proxy:latest"
+      - "dshaburov/grafana-datasource-auth-proxy:{{ .Tag }}"
+    extra_files:
+      - config.yaml

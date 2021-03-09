@@ -1,0 +1,28 @@
+{{- if .Values.ingress.enabled -}}
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ template "grafana-datasource-auth-proxy.fullname" . }}"
+  labels:
+    app.kubernetes.io/name: "{{ include "grafana-datasource-auth-proxy.name" . }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
+    app.kubernetes.io/managed-by: "{{ .Release.Service }}"
+    helm.sh/chart: "{{ include "grafana-datasource-auth-proxy.chart" . }}"
+  annotations:
+{{ toYaml .Values.ingress.annotations | indent 4 }}
+spec:
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - path: "{{ .Values.ingress.prefix }}api/datasources/proxy"
+            backend:
+              serviceName: "{{ template "grafana-datasource-auth-proxy.fullname" . }}"
+              servicePort: http
+{{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+{{- end -}}
+{{- end -}}
