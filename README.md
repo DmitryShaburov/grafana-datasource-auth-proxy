@@ -90,14 +90,14 @@ go build .
 
 Flag           |Environment Variable      | Default Value                                 |Description
 -------------- |--------------------------|-----------------------------------------------|-----
-config         |CONFIG\_FILE              |/etc/grafana-datasource-auth-proxy/config.yaml |"Path to configuration file")
-listen-address |LISTEN\_ADDRESS           |:3000                                          |"The address to listen on for HTTP requests")
-grafana-url    |GF\_SERVER\_DOMAIN        |grafana                                        |"Grafana remote origin host")
-grafana-secret |GF\_SECURITY\_SECRET\_KEY |SW2YcwTIb9zpOOhoPsMm                           |Grafana encryption secret")
-db-database    |GF\_DATABASE\_NAME        |grafana                                        |Grafana database name")
-db-host        |GF\_DATABASE\_HOST        |127.0.0.1:3306                                 |Grafana database host and port")
-db-user        |GF\_DATABASE\_USER        |                                               |Grafana database user")
-db-pass        |GF\_DATABASE\_PASSWORD    |                                               |Grafana database password")
+config         |CONFIG\_FILE              |/etc/grafana-datasource-auth-proxy/config.yaml |Path to configuration file
+listen-address |LISTEN\_ADDRESS           |:3000                                          |The address to listen on for HTTP requests
+grafana-url    |GF\_SERVER\_DOMAIN        |grafana                                        |Grafana remote origin host
+grafana-secret |GF\_SECURITY\_SECRET\_KEY |SW2YcwTIb9zpOOhoPsMm                           |Grafana encryption secret
+db-database    |GF\_DATABASE\_NAME        |grafana                                        |Grafana database name
+db-host        |GF\_DATABASE\_HOST        |127.0.0.1:3306                                 |Grafana database host and port
+db-user        |GF\_DATABASE\_USER        |                                               |Grafana database user
+db-pass        |GF\_DATABASE\_PASSWORD    |                                               |Grafana database password
 log-format     |LOG\_FORMAT               |txt                                            |Log format, valid options are txt and json
 log-level      |LOG\_LEVEL                |info                                           |Log level, valid options are trace, debug, info, warn, error, fatal and panic
 
