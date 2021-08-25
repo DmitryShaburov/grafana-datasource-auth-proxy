@@ -66,14 +66,16 @@ func (g *GrafanaDB) GetUserTeams(session string) ([]string, error) {
 	var team string
 	var teams []string
 
+	hash := g.HashToken(session)
 	query := `SELECT name
 			  FROM team
 			  INNER JOIN team_member
 			 	ON team_member.team_id = team.id
 			  INNER JOIN user_auth_token
 				ON user_auth_token.user_id = team_member.user_id
-			  WHERE user_auth_token.auth_token = ?;`
-	rows, err := g.db.Query(query, g.HashToken(session))
+			  WHERE user_auth_token.auth_token = ?
+			  	OR user_auth_token.prev_auth_token = ?;`
+	rows, err := g.db.Query(query, hash, hash)
 	if err != nil {
 		return nil, err
 	}
