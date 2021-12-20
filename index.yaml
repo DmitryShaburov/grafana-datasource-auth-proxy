@@ -3,6 +3,22 @@ entries:
   grafana-datasource-auth-proxy:
   - apiVersion: v2
     appVersion: 0.1.1
+    created: "2021-12-20T11:44:26.342793298Z"
+    description: Authentication proxy for Grafana datasource proxy API
+    digest: 1fc62a6b73a99d77dc7b6ee553fc809e1969d4ef57e8e1d9008cead968542cb0
+    home: https://github.com/DmitryShaburov/grafana-datasource-auth-proxy
+    keywords:
+    - grafana
+    kubeVersion: '>=1.10.0-0'
+    name: grafana-datasource-auth-proxy
+    sources:
+    - https://github.com/DmitryShaburov/grafana-datasource-auth-proxy/tree/main/charts/grafana-datasource-auth-proxy
+    type: application
+    urls:
+    - https://github.com/DmitryShaburov/grafana-datasource-auth-proxy/releases/download/grafana-datasource-auth-proxy-0.1.3/grafana-datasource-auth-proxy-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 0.1.1
     created: "2021-08-25T07:53:43.022275334Z"
     description: Authentication proxy for Grafana datasource proxy API
     digest: e64605a7e02a7871a40933755cce6d9917a8330cb38d1f11f13aa3604b6a9777
