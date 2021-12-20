@@ -53,3 +53,7 @@ Create the name of the service account to use
 {{- define "grafana-datasource-auth-proxy.ingress.isStable" -}}
   {{- eq (include "grafana-datasource-auth-proxy.ingress.apiVersion" .) "networking.k8s.io/v1" -}}
 {{- end -}}
+
+{{- define "grafana-datasource-auth-proxy.ingress.supportsPathType" -}}
+  {{- or (eq (include "grafana-datasource-auth-proxy.ingress.isStable" .) "true") (and (eq (include "grafana-datasource-auth-proxy.ingress.apiVersion" .) "networking.k8s.io/v1beta1") (semverCompare ">= 1.18-0" .Capabilities.KubeVersion.Version)) -}}
+{{- end -}}

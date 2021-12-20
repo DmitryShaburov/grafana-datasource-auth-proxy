@@ -1,5 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $ingressApiIsStable := eq (include "grafana-datasource-auth-proxy.ingress.isStable" .) "true" -}}
+{{- $ingressSupportsPathType := eq (include "grafana-datasource-auth-proxy.ingress.supportsPathType" .) "true" -}}
 ---
 apiVersion: {{ include "grafana-datasource-auth-proxy.ingress.apiVersion" . }}
 kind: Ingress
@@ -20,6 +21,9 @@ spec:
       http:
         paths:
           - path: "{{ .Values.ingress.prefix }}api/datasources/proxy"
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $.Values.ingress.pathType }}
+            {{- end }}
             backend:
               {{- if $ingressApiIsStable }}
               service:
@@ -36,6 +40,9 @@ spec:
       http:
         paths:
           - path: "{{ $.Values.ingress.prefix }}api/datasources/proxy"
+            {{- if $ingressSupportsPathType }}
+            pathType: {{ $.Values.ingress.pathType }}
+            {{- end }}
             backend:
               {{- if $ingressApiIsStable }}
               service:

@@ -55,6 +55,8 @@ ingress:
   # hosts: []
   # # path prefix for ingress
   # prefix: /
+  # pathType is only for k8s >= 1.1=
+  pathType: Prefix
 
 # extra environments variable
 extraEnv: {}
