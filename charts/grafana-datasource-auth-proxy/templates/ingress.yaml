@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
+{{- $ingressApiIsStable := eq (include "grafana-datasource-auth-proxy.ingress.isStable" .) "true" -}}
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: {{ include "grafana-datasource-auth-proxy.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: "{{ template "grafana-datasource-auth-proxy.fullname" . }}"
@@ -14,13 +15,39 @@ metadata:
 {{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:
   rules:
+{{- if .Values.ingress.host }}
     - host: "{{ .Values.ingress.host }}"
       http:
         paths:
           - path: "{{ .Values.ingress.prefix }}api/datasources/proxy"
             backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: "{{ template "grafana-datasource-auth-proxy.fullname" . }}"
+                port:
+                  number: 3000
+              {{- else }}
               serviceName: "{{ template "grafana-datasource-auth-proxy.fullname" . }}"
               servicePort: http
+              {{- end }}
+{{- else }}
+{{- range .Values.ingress.hosts }}
+    - host: "{{ . }}"
+      http:
+        paths:
+          - path: "{{ $.Values.ingress.prefix }}api/datasources/proxy"
+            backend:
+              {{- if $ingressApiIsStable }}
+              service:
+                name: "{{ template "grafana-datasource-auth-proxy.fullname" $ }}"
+                port:
+                  number: 3000
+              {{- else }}
+              serviceName: "{{ template "grafana-datasource-auth-proxy.fullname" $ }}"
+              servicePort: http
+              {{- end }}
+{{- end }}
+{{- end }}
 {{- if .Values.ingress.tls }}
   tls:
 {{ toYaml .Values.ingress.tls | indent 4 }}

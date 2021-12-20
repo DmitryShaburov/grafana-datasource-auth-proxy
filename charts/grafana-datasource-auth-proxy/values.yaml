@@ -49,8 +49,10 @@ ingress:
   enabled: false
   # additional annotations
   annotations: {}
-  # # hostname for ingress
+  # hostname for ingress, preferred over hosts list
   # host: grafana.local
+  # list of hostnames for ingress
+  # hosts: []
   # # path prefix for ingress
   # prefix: /
 
