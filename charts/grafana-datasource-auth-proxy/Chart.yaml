@@ -3,8 +3,8 @@ apiVersion: v2
 name: grafana-datasource-auth-proxy
 description: Authentication proxy for Grafana datasource proxy API
 type: application
-version: 0.1.4
-appVersion: 0.1.1
+version: 0.1.5
+appVersion: 0.1.2
 kubeVersion: ">=1.10.0-0"
 home: https://github.com/DmitryShaburov/grafana-datasource-auth-proxy
 sources:
