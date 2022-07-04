@@ -3,6 +3,11 @@ builds:
       - windows
       - darwin
       - linux
+    goarch:
+      - amd64
+      - arm64
+    goarm:
+      - 7
     env:
       - CGO_ENABLED=0
 
