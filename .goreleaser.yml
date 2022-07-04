@@ -15,3 +15,11 @@ dockers:
       - "dshaburov/grafana-datasource-auth-proxy:{{ .Tag }}"
     extra_files:
       - config.yaml
+  - goos: linux
+    goarch: arm64
+    goarm: 7
+    image_templates:
+      - "dshaburov/grafana-datasource-auth-proxy:latest-arm64v7"
+      - "dshaburov/grafana-datasource-auth-proxy:{{ .Tag }}-arm64v7"
+    extra_files:
+      - config.yaml
